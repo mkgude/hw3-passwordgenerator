@@ -13,7 +13,9 @@ console.log(sym);
 
 function generatePassword() {
   var passwordLength;
-  passwordLength = prompt("What password length do you need?");
+  passwordLength = prompt(
+    "Indicate the number of characters you need in the box below."
+  );
   if (passwordLength > 128 || passwordLength < 8) {
     alert("Please choose a number between 8-128");
     return generatePassword();
