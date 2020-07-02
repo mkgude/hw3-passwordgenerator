@@ -8,10 +8,6 @@ var nums = "1234567890".split("");
 console.log(nums);
 var sym = "~!@#$%^&*()?".split("");
 console.log(sym);
-var charSetBank = "~!@#$%^&*()?1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".split(
-  ""
-);
-console.log(charSetBank);
 
 //alphabetLowercase + alphabetUppercase + numbers + symbols;
 
@@ -23,12 +19,15 @@ function generatePassword() {
     return generatePassword();
   }
   // new password variable is an array taht will be filed with our random characters
-  var newpassword = [];
+
   var numbers = false;
   var uppercase = false;
   var lowercase = false;
   var specialCharacters = false;
   var confirms = 0;
+
+  var newpassword = [];
+  var charSetBank = [];
 
   // ask the user what character types they would like in their password
   // Defined as false until user presses ok, will change to true, used in later conditional statements
@@ -47,16 +46,26 @@ function generatePassword() {
 
   // checking number of confirms to check and see how many characters we are starting with
   if (lowercase) {
+    charSetBank = charSetBank.concat(alphabetLowercase);
     confirms = confirms + 1;
   }
   if (numbers) {
+    charSetBank = charSetBank.concat(nums);
     confirms = confirms + 1;
   }
   if (uppercase) {
+    charSetBank = charSetBank.concat(alphabetUppercase);
     confirms = confirms + 1;
   }
   if (specialCharacters) {
+    charSetBank = charSetBank.concat(sym);
     confirms = confirms + 1;
+  }
+  if (confirms === 0) {
+    alert(
+      "You need to select at least 1 option to include, please start over."
+    );
+    return generatePassword();
   }
   console.log(confirms);
 
